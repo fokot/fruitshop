@@ -28,14 +28,28 @@ class FruitshopTest extends Specification {
 
 
     "apple" >> {
-      Fruitshop.calucatePriceFromString("Apple").get must_== 0.6
-    }
+        Fruitshop.calucatePriceFromString("Apple").get must_== 0.6
+      }
+    "2 apples" >> {
+        Fruitshop.calucatePriceFromString("Apple Apple").get must_== 0.6
+      }
+    "3 apples" >> {
+        Fruitshop.calucatePriceFromString("Apple Apple Apple").get must_== 1.2
+      }
     "orange" >> {
-      Fruitshop.calucatePriceFromString("Orange").get must_== 0.25
-    }
+        Fruitshop.calucatePriceFromString("Orange").get must_== 0.25
+      }
+    "2 oranges" >> {
+        Fruitshop.calucatePriceFromString("Orange Orange").get must_== 0.5
+      }
+    "3 oranges" >> {
+        Fruitshop.calucatePriceFromString("Orange Orange Orange").get must_== 0.5
+      }
+    "4 oranges" >> {
+        Fruitshop.calucatePriceFromString("Orange Orange Orange Orange").get must_== 0.75
+      }
     "fruits" >> {
-      Fruitshop.calucatePriceFromString("Apple,Apple, Orange Apple\tOrange").get must_== 2.3
-    }
+        Fruitshop.calucatePriceFromString("Apple,Apple, Orange Apple\tOrange").get must_== 1.7
+      }
   }
-
 }

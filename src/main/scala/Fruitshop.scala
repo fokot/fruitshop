@@ -18,13 +18,13 @@ object Fruitshop {
   }
 
   import Product._
-  def prices = Map(
-    Apple -> 0.6,
-    Orange -> 0.25
-  )
+  def prices(product: Product.Value, n: Int) = product match {
+    case Apple => Math.floor(n / 2) * 0.6 + (n % 2) * 0.6
+    case Orange => Math.floor(n / 3) * 0.5 + (n % 3) * 0.25
+  }
 
   def calucatePrice(products: List[Product.Value]) = {
-    products.map(prices).sum
+    products.groupBy(identity).mapValues(_.size).map((prices _).tupled).sum
   }
   def calucatePriceFromString(products: String) = parse(products).map(calucatePrice)
   def printPrice(products: String) =
